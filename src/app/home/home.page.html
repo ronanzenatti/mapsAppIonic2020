@@ -4,8 +4,18 @@
       Mapa
     </ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Destino" (ionChange)="buscarEndereco($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div #map id="map"></div>
+  <ion-list [hidden]="!listaEnderecos.length">
+    <ion-item *ngFor="let local of listaEnderecos" lines="full" (click)="tracarRota(local)">
+      <ion-label class="ion-text-wrap">
+        {{local.description}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <div #map id="map"> </div>
 </ion-content>
